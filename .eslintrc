@@ -1,0 +1,155 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier", "unused-imports", "no-loops"],
+  "extends": [
+      "next",
+      "next/core-web-vitals",
+      "airbnb",
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript",
+      "plugin:prettier/recommended"
+  ],
+  "env": {
+      "es6": true,
+      "browser": true,
+      "jest": true,
+      "node": true
+  },
+  "settings": {
+      "react": {
+          "version": "detect"
+      },
+      "import/resolver": {
+          "typescript": {}
+      }
+  },
+  "rules": {
+    // React and JSX Rules
+    "react-hooks/rules-of-hooks": 0, // Disabled (0) - React Hooks are allowed
+    "react/require-default-props": 0, // Disabled (0) - Default props not required
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }], // Warning (1) - Allow .ts and .tsx files for JSX
+    "react/jsx-props-no-spreading": 0, // Disabled (0) - Prop spreading is allowed
+    "jsx-a11y/anchor-is-valid": 0, // Disabled (0) - Allow valid anchors without href
+    "react/react-in-jsx-scope": 0, // Disabled (0) - React doesn't need to be imported in JSX
+    "react/display-name": 0, // Disabled (0) - DisplayName not required
+    "react/prop-types": 0, // Disabled (0) - PropTypes not required
+    "react/no-array-index-key": 0, // Disabled (0) - Allow using array index as key
+    "react/no-unused-prop-types": 0, // Disabled (0) - Unused prop types allowed
+    "react/no-unescaped-entities": 0, // Disabled (0) - Allow unescaped entities in JSX
+    "react/jsx-pascal-case": 2, // Error (2) - Component names must be PascalCase
+    "react/function-component-definition": 0, // Error (0) -
+
+    // TypeScript Rules
+    "@typescript-eslint/explicit-module-boundary-types": 0, // Disabled (0) - No need to specify explicit return types
+    "@typescript-eslint/explicit-function-return-type": 0, // Disabled (0) - Function return types are not required
+    "@typescript-eslint/explicit-member-accessibility": 0, // Disabled (0) - No need to specify accessibility modifiers
+    "@typescript-eslint/indent": 0, // Disabled (0) - Indentation is not enforced (Prettier handles this)
+    "@typescript-eslint/member-delimiter-style": 0, // Disabled (0) - Delimiter style is not enforced
+    "@typescript-eslint/no-explicit-any": 0, // Disabled (0) - Allow the use of any type
+    "@typescript-eslint/no-var-requires": 0, // Disabled (0) - Allow require() statements
+    "no-use-before-define": 0, // Disabled (0) - Allow using variables before they are defined
+    "@typescript-eslint/no-use-before-define": 0, // Disabled (0) - Allow using variables before they are defined
+    "@typescript-eslint/naming-convention": [
+      // Error (2) - Naming convention for interfaces (PascalCase with I[A-Z])
+      "error",
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      // Error (2) - Unused variables except those starting with _
+      2,
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+
+    // Import and Module Rules
+    "unused-imports/no-unused-imports": "error", // Error (2) - Detect unused imports
+    "import/extensions": [
+      "error",
+      "never",
+      { "svg": "always", "png": "always" }
+    ], // Error (2) - Enforce file extensions for imports
+    "import/no-cycle": 0, // Disabled (0) - Allow cyclic dependencies
+    "import/order": [
+      // Error (2) - Enforce specific import order
+      "error",
+      {
+        "groups": ["builtin", "external", "internal"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "import/no-unresolved": 0,
+
+    // Other Rules
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "endOfLine": "auto",
+        "tabWidth": 4,
+        "printWidth": 120
+      }
+    ], // Error (2) - Enforce Prettier formatting
+    "camelcase": 0, // Disabled (0) - Allow camel case naming
+    "func-names": ["error", "always", { "generators": "never" }], // Error (2) - Require named functions, except for generators
+    "no-nested-ternary": 0, // Disabled (0) - Allow nested ternary expressions
+    "consistent-return": 0, // Disabled (0) - Allow functions with inconsistent return behavior
+    "no-console": [
+      // Error (2) - Disallow certain console methods (except for warn and error)
+      2,
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
+    "semi": 0, // Disabled (0) - Allow or disallow semicolons
+    "no-shadow": 2, // Error (2) - Disallow variable shadowing
+    "radix": 0, // Disabled (0) - Allow or disallow radix for parseInt()
+    "no-sparse-arrays": 2, // Error (2) - Disallow sparse arrays
+    "no-duplicate-imports": 2, // Error (2) - Disallow duplicate imports
+    "no-redeclare": 1, // Warning (1) - Disallow redeclaration of variables
+    "arrow-parens": 2, // Error (2) - Require parentheses around arrow function arguments
+    "arrow-body-style": 0, // Disabled (0) - Allow or disallow braces around arrow function bodies
+    "curly": 2, // Error (2) - Require curly braces for control statements
+    "no-trailing-spaces": [2, { "skipBlankLines": true }], // Error (2) - Disallow trailing spaces, skip blank lines
+    "no-loops/no-loops": 2, // Error (2) - Disallow loops like for, while, etc.
+    // "func-style": ["error", "expression", { "allowArrowFunctions": true }], // Error (2) - Enforce function style (expression with arrow functions allowed)
+    "func-style": 0,
+    "prefer-template": 2, // Error (2) - Use template literals instead of string concatenation
+    "max-lines": [
+      // Error (2) - Enforce maximum number of lines in a file (300 lines)
+      2,
+      {
+        "max": 300,
+        "skipComments": true,
+        "skipBlankLines": true
+      }
+    ],
+    "@next/next/no-img-element": 0, // Disabled (0) - Allow <img> elements in Next.js
+    "jsx-a11y/label-has-associated-control": 0, // Disabled (0) - Allow custom label behavior
+    "jsx-a11y/no-autofocus": 0, // Disabled (0) - Allow autoFocus attribute
+    "no-param-reassign": 0 // Disabled (0) - Allow reassigning function parameters
+  }
+}
